@@ -1,0 +1,6 @@
+/home/lappytoppy/Desktop/otzi-engine/build/CMakeFiles/rebuild_cache.dir
+/home/lappytoppy/Desktop/otzi-engine/build/CMakeFiles/Lua.dir
+/home/lappytoppy/Desktop/otzi-engine/build/CMakeFiles/edit_cache.dir
+/home/lappytoppy/Desktop/otzi-engine/build/CMakeFiles/engine.dir
+/home/lappytoppy/Desktop/otzi-engine/build/CMakeFiles/glad.dir
+/home/lappytoppy/Desktop/otzi-engine/build/CMakeFiles/imgui.dir
