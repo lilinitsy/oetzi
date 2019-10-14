@@ -30,6 +30,7 @@
 *.exe
 *.out
 *.app
+engine
 
 # Folders
 build/
