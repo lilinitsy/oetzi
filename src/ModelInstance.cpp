@@ -1,6 +1,5 @@
 #include "ModelInstance.h"
 
-
 void ModelInstance::draw(Shader shader)
 {
 	for(unsigned int i = 0; i < meshes.size(); i++)
@@ -8,7 +7,6 @@ void ModelInstance::draw(Shader shader)
 		meshes[i].draw(shader);
 	}
 }
-
 
 void ModelInstance::loadModel(std::string const &path)
 {
@@ -65,7 +63,7 @@ Mesh ModelInstance::processMesh(aiMesh *mesh, const aiScene *scene)
 			vec.y = mesh->mTextureCoords[0][i].y;
 			vertex.tex_coords = vec;
 		}
-		
+
 		else
 		{
 			vertex.tex_coords = glm::vec2(0.0f, 0.0f);
@@ -74,7 +72,7 @@ Mesh ModelInstance::processMesh(aiMesh *mesh, const aiScene *scene)
 		vector.x = mesh->mTangents[i].x;
 		vector.y = mesh->mTangents[i].y;
 		vector.z = mesh->mTangents[i].z;
-		
+
 		vertex.tangent = vector;
 		vector.x = mesh->mBitangents[i].x;
 		vector.y = mesh->mBitangents[i].y;

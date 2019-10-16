@@ -6,23 +6,20 @@
 #include <string>
 #include <vector>
 
-
-
 #include <external/imgui/imgui.h>
-#include <external/imgui/imgui_impl_sdl.h>
 #include <external/imgui/imgui_impl_opengl3.h>
-
+#include <external/imgui/imgui_impl_sdl.h>
 
 #include "AABB.h"
+#include "GPU-Includes.h"
 #include "GameManager.h"
 #include "Lights.h"
-#include "luasupport.h"
 #include "Model.h"
 #include "Render.h"
-#include "GPU-Includes.h"
 #include "Shader.h"
-#include "utils.h"
 #include "WindowManager.h"
+#include "luasupport.h"
+#include "utils.h"
 
 #include "glad/glad.h"
 
@@ -42,8 +39,7 @@
 int main()
 {
 
-	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_GAMECONTROLLER | SDL_INIT_HAPTIC);  //Initialize Graphics (for OpenGL) and Audio (for sound) and Game Controller
-
+	SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_GAMECONTROLLER | SDL_INIT_HAPTIC); //Initialize Graphics (for OpenGL) and Audio (for sound) and Game Controller
 
 	createOpenGLWindow(1280, 720, false);
 	initIMGui();
@@ -54,13 +50,10 @@ int main()
 	a->position = glm::vec3(0.0f, 0.0f, 0.0f);
 	a->extents = glm::vec3(1.0f, 1.0f, 1.0f);
 
-
 	Shader default_shader("shaders/vertex_basic.glsl", "shaders/fragment_basic.glsl");
 	default_shader.use();
-	
 
-
-	// Create a test gameobject.	
+	// Create a test gameobject.
 	load_model("models/simpleCube.obj");
 
 	GameManager game_manager = {};
@@ -70,32 +63,26 @@ int main()
 	game_manager.models.push_back(global_model_list[0]);
 	game_manager.aabbs.push_back(*a);
 
-	
-
 	SDL_Event windowEvent;
 	bool quit = false;
 	while(!quit)
 	{
 		while(SDL_PollEvent(&windowEvent))
 		{
-			if (windowEvent.type == SDL_KEYUP && windowEvent.key.keysym.sym == SDLK_ESCAPE) quit = true; //Exit event loop		}
+			if(windowEvent.type == SDL_KEYUP && windowEvent.key.keysym.sym == SDLK_ESCAPE)
+				quit = true; //Exit event loop		}
 		}
-		glClearColor(0,0,0,1);
+		glClearColor(0, 0, 0, 1);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 
 		for(unsigned int i = 0; i < game_manager.models.size(); i++)
 		{
-			
 		}
 
 		for(unsigned int i = 0; i < num_models; i++)
 		{
 			global_model_list[i].model_instance->draw(default_shader);
 		}
-
-
-
 
 		IMGuiNewFrame();
 		ImGui::Render();
@@ -105,10 +92,7 @@ int main()
 		swapDisplayBuffers();
 	}
 
-
-
 	//GameManager game_manager = {};
 
-	
 	return 0;
 }

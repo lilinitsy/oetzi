@@ -10,7 +10,6 @@
 Model global_model_list[10000];
 unsigned int num_models = 0;
 
-
 void load_model(std::string fileName)
 {
 	LOG_SCOPE_FUNCTION(INFO);
@@ -118,16 +117,18 @@ void load_model(std::string fileName)
 void add_child(std::string child_name, int current_model_id)
 {
 	int child_model = -1;
-	for (int i = 0; i < num_models; i++){
-		if (global_model_list[i].name == child_name){
+	for(int i = 0; i < num_models; i++)
+	{
+		if(global_model_list[i].name == child_name)
+		{
 			child_model = i;
 			continue;
-		} 
+		}
 	}
-	
+
 	CHECK_F(child_model >= 0, "No model of name '%s' found to be added as a child model!", child_name.c_str());
 
-	LOG_F(1,"Adding child %s", child_name.c_str());
+	LOG_F(1, "Adding child %s", child_name.c_str());
 	global_model_list[current_model_id].child_models.push_back(&global_model_list[child_model]);
 }
 

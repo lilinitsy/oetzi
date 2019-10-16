@@ -33,13 +33,12 @@ void Mesh::setup_mesh()
 	glBindVertexArray(0);
 }
 
-
 void Mesh::draw(Shader shader)
 {
-	unsigned int diffuse  = 1;
+	unsigned int diffuse = 1;
 	unsigned int specular = 1;
-	unsigned int normal   = 1;
-	unsigned int height   = 1;
+	unsigned int normal = 1;
+	unsigned int height = 1;
 
 	for(unsigned int i = 0; i < textures.size(); i++)
 	{
