@@ -14,10 +14,10 @@ struct GameManager
 {
 	std::vector<std::string> names;
 	std::vector<glm::vec3> positions;
-	std::vector<Model*> models;
+	std::vector<Model> models;
 	std::vector<AABB> aabbs;
 	std::vector<Light> lights;
-	Octree *octree;
+	Octree *octree = nullptr;
 	int num_gameobjects;
 
 	void update();

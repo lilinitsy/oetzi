@@ -8,6 +8,8 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
+#include "Shader.h"
+
 
 struct Vertex
 {
@@ -31,15 +33,14 @@ struct Mesh
 	std::vector<Vertex> vertices;
 	std::vector<unsigned int> indices;
 	std::vector<Texture> textures;
-	unsigned int VAO;
+	unsigned int vao;
+    unsigned int vbo;
+    unsigned int ebo;
 
-	Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices, std::vector<Texture> textures)
-	{
-		this->vertices = vertices;
-		this->indices = indices;
-		this->textures = textures;
-	}
-
+    void draw(Shader shader);
+    void setup_mesh();
 };
+
+
 
 #endif

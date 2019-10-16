@@ -17,7 +17,7 @@
 
 
 #include "Mesh.h"
-
+#include "Shader.h"
 
 
 #include "glm/glm.hpp"
@@ -29,20 +29,16 @@
 
 struct ModelInstance
 {
-	public:
-	    std::vector<Texture> textures_loaded;
-	    std::vector<Mesh> meshes;
-	    std::string directory;
-	    bool gammaCorrection;
+	std::vector<Texture> textures_loaded;
+	std::vector<Mesh> meshes;
+	std::string directory;
 
-	private:
-	    /*  Functions   */
-	    // loads a model with supported ASSIMP extensions from file and stores the resulting meshes in the meshes std::vector.
-	    void loadModel(std::string const &path);
-	    void processNode(aiNode *node, const aiScene *scene);
-	    Mesh processMesh(aiMesh *mesh, const aiScene *scene);
+	void draw(Shader shader);
+	void loadModel(std::string const &path);
+	void processNode(aiNode *node, const aiScene *scene);
+	Mesh processMesh(aiMesh *mesh, const aiScene *scene);
 
-	    std::vector<Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type, std::string typeName);
+	std::vector<Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type, std::string typeName);
 };
 
 

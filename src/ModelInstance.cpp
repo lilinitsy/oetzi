@@ -1,5 +1,15 @@
 #include "ModelInstance.h"
 
+
+void ModelInstance::draw(Shader shader)
+{
+	for(unsigned int i = 0; i < meshes.size(); i++)
+	{
+		meshes[i].draw(shader);
+	}
+}
+
+
 void ModelInstance::loadModel(std::string const &path)
 {
 	Assimp::Importer importer;
@@ -55,11 +65,16 @@ Mesh ModelInstance::processMesh(aiMesh *mesh, const aiScene *scene)
 			vec.y = mesh->mTextureCoords[0][i].y;
 			vertex.tex_coords = vec;
 		}
+		
 		else
+		{
 			vertex.tex_coords = glm::vec2(0.0f, 0.0f);
+		}
+
 		vector.x = mesh->mTangents[i].x;
 		vector.y = mesh->mTangents[i].y;
 		vector.z = mesh->mTangents[i].z;
+		
 		vertex.tangent = vector;
 		vector.x = mesh->mBitangents[i].x;
 		vector.y = mesh->mBitangents[i].y;
@@ -85,7 +100,9 @@ Mesh ModelInstance::processMesh(aiMesh *mesh, const aiScene *scene)
 	std::vector<Texture> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
 	textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 
-	return Mesh(vertices, indices, textures);
+	Mesh m = {vertices, indices, textures};
+
+	return m;
 }
 
 std::vector<Texture> ModelInstance::loadMaterialTextures(aiMaterial *mat, aiTextureType type, std::string typeName)
